@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ParticleSystemController : MonoBehaviour
 {
     public ParticleSystem redParticles;
     public float particleRadius = 1f;
+    public bool hit = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +22,14 @@ public class ParticleSystemController : MonoBehaviour
         ParticleSystem.ShapeModule shape = redParticles.shape;
         shape.radius = particleRadius;
         particleRadius += 0.01f;
+    }
+
+    public void OnParticleCollision(GameObject other)
+    {
+        if(other.CompareTag("Gem"))
+        {
+            hit = true;
+            Debug.Log("HIT");
+        }
     }
 }
